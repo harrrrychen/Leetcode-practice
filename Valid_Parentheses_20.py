@@ -1,4 +1,5 @@
 class Solution:
+    #1 my version
     def isValid(self, s: str) -> bool:
         #use Stack to implement
         stack_list = [0]
@@ -28,3 +29,14 @@ class Solution:
             return 0 
         else:
             return 1
+    #2 use hashtable + put operation into if statement
+    def isValid(self, s: str) -> bool:
+        stack = []
+        opening = {"]": "[", "}": "{", ")": "("}
+        for ch in s:
+            if ch in ["[", "{", "("]:
+                stack.append(ch)
+            else:
+                if not stack or stack.pop() != opening[ch]:
+                    return False
+        return not stack
